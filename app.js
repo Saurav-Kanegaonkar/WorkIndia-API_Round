@@ -57,7 +57,9 @@ app.post('/app/user/auth', (req, res) => {
         {
             return res.status(404).json({message: 'username does not exist'});
         }
-        bcrypt.compare(password, result.password, (err, result) => {
+        // console.log(result);
+        // console.log(password + ' ' + result[0].password)
+        bcrypt.compare(password, result[0].password, (err, result) => {
             if(err)
             {
                 return res.status(500).json({message: err.message});
