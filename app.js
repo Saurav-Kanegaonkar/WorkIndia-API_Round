@@ -1,8 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
 const dotenv = require('dotenv');
-const path = require('path');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
 
 dotenv.config({ path: './.env'});
@@ -19,19 +17,8 @@ db.connect((err)=>{
 })
 
 const app = express();
-app.set('view engine', 'hbs');
-app.use(express.urlencoded({ extended: false }));  // Parse url encoded bodies sent by the HTML forms
 app.use(express.json());  // Parse json bodies sent by the API server
 
-
-// Authentication Routes
-app.get('/', (req, res) => {
-    res.send("Hiiii");
-});
-
-// app.get('/app/user', (req, res) => {
-    
-// });
 
 app.post('/app/user', (req, res) => {
     const {username, password} = req.body;
